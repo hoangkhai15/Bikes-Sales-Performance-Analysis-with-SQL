@@ -68,45 +68,69 @@ WITH Store1 AS (
         S.store_name,
         P.product_name,
         ROUND(SUM(OI.quantity * OI.list_price * (1 - OI.discount)), 2) AS [Total revenue each product]
-    FROM stores S
-    JOIN orders O ON S.store_ID = O.store_ID
-    JOIN order_items OI ON O.order_id = OI.order_id
-    JOIN products P ON OI.product_id = P.product_id
-    WHERE S.store_name = 'Baldwin Bikes'
-    GROUP BY S.store_name, P.product_name
-    ORDER BY [Total revenue each product] DESC),
+    FROM 
+	stores S
+    JOIN 
+	orders O ON S.store_ID = O.store_ID
+    JOIN 
+	order_items OI ON O.order_id = OI.order_id
+    JOIN 
+	products P ON OI.product_id = P.product_id
+    WHERE 
+	S.store_name = 'Baldwin Bikes'
+    GROUP BY 
+	S.store_name, P.product_name
+    ORDER BY 
+	[Total revenue each product] DESC),
 Store2 AS (
     SELECT TOP 3 WITH ties
         S.store_name,
         P.product_name,
         ROUND(SUM(OI.quantity * OI.list_price * (1 - OI.discount)), 2) AS [Total revenue each product]
-    FROM stores S
-    JOIN orders O ON S.store_ID = O.store_ID
-    JOIN order_items OI ON O.order_id = OI.order_id
-    JOIN products P ON OI.product_id = P.product_id
-    WHERE S.store_name = 'Santa Cruz Bikes'
-    GROUP BY S.store_name, P.product_name
-    ORDER BY [Total revenue each product] DESC),
+    FROM 
+	stores S
+    JOIN 
+	orders O ON S.store_ID = O.store_ID
+    JOIN 
+	order_items OI ON O.order_id = OI.order_id
+    JOIN 
+	products P ON OI.product_id = P.product_id
+    WHERE 
+	S.store_name = 'Santa Cruz Bikes'
+    GROUP BY 
+	S.store_name, P.product_name
+    ORDER BY 
+	[Total revenue each product] DESC),
 Store3 AS (
     SELECT TOP 3 With ties
         S.store_name,
         P.product_name,
         ROUND(SUM(OI.quantity * OI.list_price * (1 - OI.discount)), 2) AS [Total revenue each product]
-    FROM stores S
-    JOIN orders O ON S.store_ID = O.store_ID
-    JOIN order_items OI ON O.order_id = OI.order_id
-    JOIN products P ON OI.product_id = P.product_id
-    WHERE S.store_name = 'Rowlett Bikes'
-    GROUP BY S.store_name, P.product_name
-    ORDER BY [Total revenue each product] DESC)
+    FROM 
+	stores S
+    JOIN 
+	orders O ON S.store_ID = O.store_ID
+    JOIN 
+	order_items OI ON O.order_id = OI.order_id
+    JOIN 
+	products P ON OI.product_id = P.product_id
+    WHERE 
+	S.store_name = 'Rowlett Bikes'
+    GROUP BY 
+	S.store_name, P.product_name
+    ORDER BY 
+	[Total revenue each product] DESC)
 SELECT * 
-FROM Store1
+FROM 
+	Store1
 UNION ALL
 SELECT * 
-FROM Store2
+FROM 
+	Store2
 UNION ALL
 SELECT * 
-FROM Store3;
+FROM 
+	Store3;
 -- Which products are currently out of stock?
 SELECT 
     p.product_id,
